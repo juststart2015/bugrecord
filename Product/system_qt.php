@@ -140,6 +140,7 @@
 			<table id="tt" class="easyui-datagrid" style="height:100%" fitColumns="true" title="搜索" iconCls="icon-search" toolbar="#tb" rownumbers="true" pagination="true" url="system_qt_select.php" nowrap="false" singleselect="true">
     			<thead>
                     <tr>
+						<th field="wt_id" width="13" sortable="true">ID</th>
                         <th field="zt" width="23" sortable="true">状态</th>
                         <th field="tcr" width="26" sortable="true">提出人</th>
                         <th field="djrq" width="35" sortable="true">登记日期</th>
@@ -250,6 +251,7 @@
 						document.getElementById('gx').style.display='block';
 						document.getElementById('clr').readOnly='';
 						document.getElementById('clr').style.border=''" />
+						<span style="font-size:20px">ID:<input name="wt_id" style="font-size:20px; width:60px; border:none" readonly="readonly" /></span>
 					</div>
 					
 					<fieldset style="width:86.5%; height:auto">
