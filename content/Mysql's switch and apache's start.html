@@ -1,36 +1,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>�ޱ����ĵ�</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>无标题文档</title>
 </head>
 
 <body>
-	<h1>����Mysql��wamp��Mysql���ݿ�֮����л��Լ�Apache������˵��</h1>
+	<h1>本地Mysql与wamp的Mysql数据库之间的切换以及Apache的启动说明</h1>
 	<list>
 		<ol>
 			<li>
-				<h3>����Mysql��wamp��Mysql���ݿ�֮����л�</h3>
+				<h3>本地Mysql与wamp的Mysql数据库之间的切换</h3>
 				<p>
-					������ϵͳmysql�����������˱���mysql.<br />
-					���رձ���mysql�����ٿ���wamp��mysql������������wamp��mysql����.<br />
+					先启动系统mysql服务，则启动了本地mysql.<br />
+					若关闭本地mysql服务，再开启wamp的mysql服务，则启动了wamp的mysql服务.<br />
 					<br />
-					��Ϊ������ͬһ��3306�˿�,���Ը�������mysql�ķ��񣬶���ָ��ǰ���򿪵�mysql.<br />
-					����phpmysqladmin�Լ�����mysql��cmd����ڣ�����ʱ�������ӵ�ǰ��mysql���ݿ⣬��������ʵ��phomyadmin��ͼ�λ���������mysql.<br />
+					因为都是用同一个3306端口,所以各项连接mysql的服务，都会指向当前所打开的mysql.<br />
+					包含phpmysqladmin以及本地mysql的cmd命令窗口，连接时都会连接当前的mysql数据库，这样可以实现phomyadmin来图形化管理本地mysql.<br />
 					<br />
-					��mysql���ݿⶼ��������������Ŀ¼��data�ڣ����Կɿ������ļ���ʵ�����ݿ��ڵ��ļ�����.<br />
+					另mysql数据库都保存在自身所在目录的data内，所以可拷贝该文件以实现数据库内的文件复制.<br />
 				</p>
 			</li>
 			<li>
-				<h3>Wamp�ڵ�apache������˵��</h3>
+				<h3>Wamp内的apache的启动说明</h3>
 				<p>
-					apache����Ҳ�ǽ���80�˿ڣ�����Ҫ�Ȱѵ�ǰ�򿪵�����80�˿ڵķ���ر�.<br />
-					�ɴ�cmd����ڣ����롰netstat -aon�����鿴��ǰ�˿�ʹ�����.����ͼ��<br />
+					apache启动也是借用80端口，所以要先把当前打开的暂用80端口的服务关闭.<br />
+					可打开cmd命令窗口，输入“netstat -aon”来查看当前端口使用情况.如下图：<br />
 					<img src="img/port contrast.jpg" style="width:80%" /><br /><br />
-					<h4>����ռ�ö˿ڵķ����޸ķ�����</h4>
-					1��IIS��ͨ������ͼʾ���ı�������վ��Ӧ�Ķ˿�<br />
+					<h4>部分占用端口的服务修改方法：</h4>
+					1、IIS可通过如下图示，改变其下网站对应的端口<br />
 					<img src="img/IIS's port alter.jpg" style="width:80%" /><br /><br />
-					2�������ذ�װ��SQL SEVER�������һ����SQL Server Reporting Services�ķ���ռ��80�˿ڣ����ҵ��÷���ֱ�ӹرռ��ɣ�����ͼʾ��<br />
+					2、若本地安装了SQL SEVER，则会有一个叫SQL Server Reporting Services的服务占用80端口，可找到该服务直接关闭即可，如下图示：<br />
 					<img src="img/SQL' port stop.jpg" style="width:80%" />
 				</p>
 			</li>
