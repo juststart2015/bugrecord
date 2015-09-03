@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -31,6 +31,7 @@
 			//if..else..函数，用于判断当日期控件内值为空时，执行什么查询条件，当不为空时，执行什么查询条件；
 			if(a =='' & b ==''){
 				$('#tt').datagrid('load',{
+				id: $('#id').val(),
 				zt: $('#zt').val(),
 				tcr: $('#tcr').val(),
 				wtms: $('#wtms').val(),
@@ -42,6 +43,7 @@
 				//datebox获取值：var starttime=$('#starttime').datebox('getValue');
 				ksrq: $('#ksrq').datebox('getValue'),
 				jsrq: $('#jsrq').datebox('getValue'),
+				id: $('#id').val(),
 				zt: $('#zt').val(),
 				tcr: $('#tcr').val(),
 				wtms: $('#wtms').val(),
@@ -163,6 +165,7 @@
                     <input id="cljg" style="border:1px solid #ccc"  />
                 </p>
                 <p>
+					<span>ID:</span><input id="id" style="width:50px" />
 					<span>状态:</span>
 					<select id="zt" style="width:70px">
 						<option value="">全部</option>

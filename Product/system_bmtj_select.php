@@ -12,6 +12,7 @@
 	//以下语句通过strtotime把时间戳转换为unix格式，再通过date转换为带时分秒的日期，以便查询使用
 	$jsrq = isset($_POST['jsrq']) ? date("Y-m-d 23:59:59",strtotime($_POST['jsrq'])) : '2999-12-31';
 	
+	$id = isset($_POST['id']) ? mysql_real_escape_string($_POST['id']) : '';
 	$zt = isset($_POST['zt']) ? mysql_real_escape_string($_POST['zt']) : '';
 	$yxj = isset($_POST['yxj']) ? mysql_real_escape_string($_POST['yxj']) : '';
 	//同理，是否配置变量zt，若没有则空，若有则把值转换为string型
@@ -26,7 +27,7 @@
 	//page为设置的页数，rows为设置的列数（即显示的列）
 	$result = array();//新建一个result数组
 	
-	$where = "djrq between '$ksrq' and '$jsrq' and zt like '$zt%'and yxj like '$yxj%' and tcr like '$tcr%' and wtms like '%$wtms%' and cljg like '%$cljg%'";//模糊查询语句like
+	$where = "djrq between '$ksrq' and '$jsrq' and wt_id like '$id%' and zt like '$zt%'and yxj like '$yxj%' and tcr like '$tcr%' and wtms like '%$wtms%' and cljg like '%$cljg%'";//模糊查询语句like
 	$rs = mysql_query("select count(*) from system_bmtj where " . $where);
 	//select count(*) from item指从item表中查询出总记录条数，并返回给rs
 	$row = mysql_fetch_row($rs);

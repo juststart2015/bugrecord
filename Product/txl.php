@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -150,7 +150,7 @@
             </div>
             
             <!--以下函数为内容增加框-->
-            <div class="easyui-window" id="md_add" title="门店增加" style="width:38%;height:50%;" closed="true">
+            <div class="easyui-window" id="md_add" title="门店增加" style="width:38%;height:55%;" closed="true">
             	<form id="md_zj" style="padding:10px 20px 10px 40px;" action="txl_insert.php" method="post">
 					<div style="position:absolute; left:30%">
                 	<p>
@@ -188,7 +188,7 @@
             </div>
 			
             <!--以下函数为内容查询编辑框-->
-            <div class="easyui-dialog" id="md_edit" title="信息修改" style="width:38%;height:50%;" closed="true">
+            <div class="easyui-dialog" id="md_edit" title="信息修改" style="width:38%;height:55%;" closed="true">
             	<form style="padding:10px 20px 10px 40px;" action="txl_edit.php" method="post" id="txl_fm" name="md_edit">
 					<div style="position:absolute; left:30%">
 						<p>

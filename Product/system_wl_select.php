@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	include 'conn.php';
 	
 	//三元操作符?,语法：条件 ? 结果1 : 结果2,问号前面的位置是判断的条件，如果满足条件时结果1，不满足时结果2
@@ -12,6 +12,7 @@
 	//以下语句通过strtotime把时间戳转换为unix格式，再通过date转换为带时分秒的日期，以便查询使用
 	$jsrq = isset($_POST['jsrq']) ? date("Y-m-d 23:59:59",strtotime($_POST['jsrq'])) : '2999-12-31';
 	
+	$id = isset($_POST['id']) ? mysql_real_escape_string($_POST['id']) : '';
 	$zt = isset($_POST['zt']) ? mysql_real_escape_string($_POST['zt']) : '';
 	//同理，是否配置变量zt，若没有则空，若有则把值转换为string型
 	$tcr = isset($_POST['tcr']) ? mysql_real_escape_string($_POST['tcr']) : '';
@@ -25,7 +26,7 @@
 	//page为设置的页数，rows为设置的列数（即显示的列）
 	$result = array();//新建一个result数组
 	
-	$where = "djrq between '$ksrq' and '$jsrq' and zt like '$zt%' and tcr like '$tcr%' and wtms like '%$wtms%' and cljg like '%$cljg%'";//模糊查询语句like
+	$where = "djrq between '$ksrq' and '$jsrq' and wt_id like '$id%' and zt like '$zt%' and tcr like '$tcr%' and wtms like '%$wtms%' and cljg like '%$cljg%'";//模糊查询语句like
 	$rs = mysql_query("select count(*) from system_wl where " . $where);
 	//select count(*) from item指从item表中查询出总记录条数，并返回给rs
 	$row = mysql_fetch_row($rs);
