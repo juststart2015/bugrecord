@@ -15,8 +15,10 @@
 			$jlr = $_SESSION['username'];
 			$tcr = $_POST["tcr"];
 			//$djrq = $_POST["djrq"];
-			$wtms = $_POST["wtms"];
-			$cljg = $_POST["cljg"];
+			$wtms_a = $_POST["wtms"];
+			$wtms = str_replace("\r\n","<br>","$wtms_a");
+			$cljg_a = $_POST["cljg"];
+			$cljg = str_replace("\r\n","<br>","$cljg_a");
 			$clr = $_POST["clr"];
 			$wcrq = $_POST["wcrq"];
 			$bz = $_POST["bz"];

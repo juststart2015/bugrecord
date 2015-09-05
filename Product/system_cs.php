@@ -80,6 +80,9 @@
 				document.getElementById("wtms_value").value = wtms_select;//此句把wtms的值赋给一个隐藏的input
 				//以下代码会自动提交表单，但不能有type、id和name等的值为关键字submit，否则不执行，
 				document.getElementById("wtms_tj").submit();
+				//以下语句用于替换获取wtms值的第一个testarea，值为获取第一个testarea里的值并替换掉<br>，变为\r\n，以供testarea识别，并正确美观的显示在页面
+				var wtms_select_a = wtms_select.replace("<br>","\r\n");
+				document.getElementById("wtms_b").value = wtms_select_a;
 				/*
 				$('#win_edit').window('open');
 				$("#zt_edit").val(row.zt);
@@ -280,7 +283,8 @@
                     <div style="float:left; clear:left">
                     <fieldset style="width:auto; height:auto">
                     	<legend>问题描述</legend>
-                            <textarea name="wtms" id="wtms_a" readonly="readonly" cols="60" rows="10" style="border:hidden;"></textarea>
+                            <textarea name="wtms" id="wtms_a" readonly="readonly" cols="60" rows="10" style="display:none"></textarea>
+							<textarea name="wtms_b" id="wtms_b" readonly="readonly" cols="60" rows="10" style="border:none"></textarea>
                     </fieldset>
                     </div>
                     <div style="float:left;">

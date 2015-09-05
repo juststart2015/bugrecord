@@ -15,7 +15,8 @@
 			$tcr = $_POST["tcr"];
 			$djrq = $_POST["djrq"];
 			$wtms = $_POST["wtms"];
-			$cljg = $_POST["gx"];
+			$cljg_a = $_POST["gx"];
+			$cljg = str_replace("\r\n","<br>","$cljg_a");
 			$clr = $_POST["clr"];
 			$wcrq = $_POST["wcrq"];
 			$bz = $_POST["bz"];
