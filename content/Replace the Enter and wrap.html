@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+	<h1>Textarea中存储的回车符与换行符转换</h1>
+	<list>
+		<ol>
+			<li>
+				<h3>Textarea中存储的回车与换行符</h3>
+				<p>
+					在普通textarea文本框中输入文字后，若换行，则记录为\r\n.<br />
+					其中\r为回车，\n为新行，所以一个回车换行里面的隐藏字符为“\r\n”.<br />
+					<br />
+					若直接存储到Mysql中，则也会有换行，但不便于查询，直接select时会出现查询无结果现象，条件需调整为like '%%'.<br />
+					所以在存储时，需要把\r\n转换为其他字符，以便于存储与查询.<br />
+				</p>
+			</li>
+			<li>
+				<h3>PHP的str_replace函数</h3>
+				<p>
+					<b>实例:</b><br />
+					把字符串 "Hello world!" 中的字符 "world" 替换为 "Shanghai"：<br />
+					<pre>&lt;<i>?php</i>
+	<i>echo str_replace("world","Shanghai","Hello world!");</i>
+<i>?</i>&gt;</pre>
+						
+					<div>
+					<b>语法:</b><br />
+					
+					<pre>str_replace(<i>find</i>,<i>replace</i>,<i>string</i>,<i>count</i>)</pre>
+					
+					<table> 
+					<tbody><tr>
+					<th style="width:20%;">参数</th>
+					<th>描述</th>
+					</tr>  
+					
+					<tr>
+					<td><i>find</i></td>
+					<td>必需。规定要查找的值。</td>
+					</tr>
+					
+					<tr>
+					<td><i>replace</i></td>
+					<td>必需。规定替换 <i>find</i> 中的值的值。</td>
+					</tr>
+					
+					<tr>
+					<td><i>string</i></td>
+					<td>必需。规定被搜索的字符串。</td>
+					</tr>
+					
+					<tr>
+					<td><i>count</i></td>
+					<td>可选。对替换数进行计数的变量。</td>
+					</tr>
+					</tbody></table>
+					</div>
+
+					<h4>参考：<a href="http://www.w3school.com.cn/php/func_string_str_replace.asp" target="_blank">http://www.w3school.com.cn/php/func_string_str_replace.asp</a></h4>
+				</p>
+			</li>
+			<li>
+				<h3>转换"\r\n"为"test"</h3>
+					<p>
+					\r\n的顺序不能改变，因为隐藏字符的实际格式为先回车再新行.<br />
+					所以替换为写法为 $a = str_replace("\r\n","test","$b");<br />
+					其中 $a 为最后存储进Mysql中的值，$b 为从Textarea中获取到的值.<br />
+					<p>
+			</li>
+		</ol>
+	</list>
+</body>
+</html>
