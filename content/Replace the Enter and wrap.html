@@ -3,6 +3,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>无标题文档</title>
+<style>
+	table
+	  {
+	  border-collapse:collapse;
+	  }
+	
+	table, td, th
+	  {
+	  border:1px solid black;
+	  }
+</style>
 </head>
 
 <body>
@@ -20,8 +31,9 @@
 				</p>
 			</li>
 			<li>
-				<h3>PHP的str_replace函数</h3>
+				<h3>PHP的str_replace函数与JS的replace函数</h3>
 				<p>
+					<b>PHP的str_replace函数</b><br />
 					<b>实例:</b><br />
 					把字符串 "Hello world!" 中的字符 "world" 替换为 "Shanghai"：<br />
 					<pre>&lt;<i>?php</i>
@@ -63,10 +75,42 @@
 
 					<h4>参考：<a href="http://www.w3school.com.cn/php/func_string_str_replace.asp" target="_blank">http://www.w3school.com.cn/php/func_string_str_replace.asp</a></h4>
 				</p>
+				<p>
+					<b>JS的replace函数</b><br />
+					<br />
+					<b>实例:</b><br />
+					把“终古”替换掉，变成“中国”.<br />
+					<pr><i>var stringObj</i>="终古人民共和国，终古人民";<br />
+					<pr><i>var newstr=stringObj.replace</i>("终古","中国");<br />
+					<br />
+					<b>语法:</b><br />
+					replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。
+					<pre>stringObject.replace(<i>regexp/substr</i>,<i>replacement</i>)</pre>
+					<table> 
+					  <tbody><tr>
+						<th>参数</th>
+						<th>描述</th>
+					  </tr>  
+					  <tr>
+						<td>regexp/substr</td>
+						<td>
+						<p>必需。规定子字符串或要替换的模式的 RegExp 对象。</p>
+						<p>请注意，如果该值是一个字符串，则将它作为要检索的直接量文本模式，而不是首先被转换为 RegExp 对象。</p>
+						</td>
+					  </tr>
+					  <tr>
+						<td>replacement</td>
+						<td>必需。一个字符串值。规定了替换文本或生成替换文本的函数。</td>
+					  </tr>
+					</tbody></table>
+					<br />
+					<b>参考：</b><a href="http://www.w3school.com.cn/jsref/jsref_replace.asp">http://www.w3school.com.cn/jsref/jsref_replace.asp</a>
+				</p>
 			</li>
 			<li>
 				<h3>转换"\r\n"为"test"</h3>
 					<p>
+					\r表示回车，\n表示新行.<br />
 					\r\n的顺序不能改变，因为隐藏字符的实际格式为先回车再新行.<br />
 					所以替换为写法为 $a = str_replace("\r\n","test","$b");<br />
 					其中 $a 为最后存储进Mysql中的值，$b 为从Textarea中获取到的值.<br />
