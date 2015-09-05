@@ -299,25 +299,59 @@
                     </div>
 					
 					<div id="gx" style="display:none">
-                    <div style="float:left; clear:left">
-					<fieldset style="width:auto; height:auto">
-                    	<legend>编辑更新</legend>
-                            <textarea name="gx" cols="60" rows="10" style="border:hidden"></textarea>
-                    </fieldset>
-                    </div>
-					
-                    <div style="float:left; clear:left">
-                    <p>
-                        更新人：<?php echo $_SESSION['username']; ?>
-                    </p>
-                    </div>
-					
-					<div style="padding:5px; float:left; clear:left">
-						<input class="easyui-linkbutton" value="取消" style="width:80px; height:30px" onclick="javascript:document.getElementById('gx').style.display='none';document.getElementById('clr').readOnly='readnoly';document.getElementById('clr').style.border='hidden'" />
-					</div>
-                    <div style="padding:5px; float:left;">
-                    	<input class="easyui-linkbutton" type="submit" name="submit" value="保存" style="width:80px; height:30px" />
-                    </div>
+						<div style="float:left; clear:left">
+							<fieldset style="width:auto; height:auto">
+								<legend>编辑更新</legend>
+									<textarea name="gx" cols="60" rows="10" style="border:hidden"></textarea>
+							</fieldset>
+						</div>
+						
+						<div style="float:left">
+						<table>
+						  <tr>
+						    <th>
+							<div style="float:left;">
+								<p>
+									更新人：<?php echo $_SESSION['username']; ?>
+								</p>
+							</div>
+							</th>
+						  </tr>
+						  <tr>
+						  	<th>	
+							<div style="padding:5px; float:left;">
+								<input class="easyui-linkbutton" value="取消" style="width:80px; height:30px" onclick="javascript:document.getElementById('gx').style.display='none';document.getElementById('clr').readOnly='readnoly';document.getElementById('clr').style.border='hidden'" />
+							</div>
+							<div style="padding:5px; float:left;">
+								<input class="easyui-linkbutton" type="submit" name="submit" value="保存" style="width:80px; height:30px" />
+							</div>
+						  	</th>
+						  </tr>
+						  <tr>
+						  	<th>
+								<a href="#" onclick="javascript:document.getElementById('assign').style.display='';">你还可以指定信息部人员跟踪处理此问题，请点我！</a>
+							</th>
+						  </tr>
+						  <tr>
+						  	<th>
+								<div id="assign" style="display:none">
+								指派
+								<select>
+									<option>肖婷婷</option>
+									<option>杨金金</option>
+								</select>
+								跟踪处理此问题.
+								<div style="display:inline">
+									<input class="easyui-linkbutton" value="确认" style="width:80px; height:30px" />
+								</div>
+								<div style="display:inline">
+									<input class="easyui-linkbutton" value="取消" style="width:80px; height:30px" onclick="javascript:document.getElementById('assign').style.display='none';" />
+								</div>
+								</div>
+							</th>
+						  </tr>
+						</table>
+						</div>
 					</div>
 					
                 </form>
