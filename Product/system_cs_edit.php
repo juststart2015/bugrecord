@@ -21,6 +21,9 @@
 			$wcrq = $_POST["wcrq"];
 			$bz = $_POST["bz"];
 			$bjr = $_SESSION['username'];
+			$wt_lx = $_POST["wt_lx"];
+			$wt_id = $_POST["wt_id"];
+			$assigned_name = $_POST["assigned_name"];
 			if($cljg == "" || $clr == "")
 				{
 					echo "<script>alert('请填写更新内容及处理人');location.href='system_cs.php'</script>";
@@ -30,10 +33,22 @@
 					mysql_connect("localhost","root","sa");
 					mysql_select_db("my_db");
 					mysql_query("set names 'utf8'");
+					//此语句更新system_cs表，显示该问题当前最新状态
 					$sql = "update system_cs set zt='$zt',tcr='$tcr',djrq='$djrq',wtms='$wtms',cljg='$cljg',clr='$clr',wcrq='$wcrq',bz='$bz' where tcr='$tcr' and wtms='$wtms'";
+					//此语句，记录该问题所有的处理过程记录
 					$sql_gx = "insert into system_cs_clgc (wtms,clgc,bjr) values ('$wtms','$cljg','$bjr')";
+					//此语句更新当前指派问题的处理情况，若为已完成，则更新表内zt为已完成，就不再在用于首页显示
+					$sql_gx_assign = "update system_assign_user set wt_zt = '$zt' where wt_id = '$wt_id'";
+					//此语句，记录被指派问题的处理过程，在第一次指派时记录一次，之后保存时，若一直是“处理中”状态，则不在重复记录，若变成“已完成”状态，则记录一次完成的时间及相关内容。
+					if($zt == "已完成")
+					{
+					$sql_assign_insert = "insert system_assign_record (wt_lx,wt_id,wt_zt,assign_name,assigned_name,cljg) value('$wt_lx','$wt_id','$zt','$bjr','$assigned_name','$cljg')";
+					$result_assign_insert = mysql_query($sql_assign_insert);
+					}
+					
 					$result_gx = mysql_query($sql_gx);
 					$result = mysql_query($sql);
+					$result_gx_assign = mysql_query($sql_gx_assign);
 					if(!$result)
 						{
 							echo "<script>alert('未保存，请重试');location.href='system_cs.php'</script>";
@@ -46,7 +61,84 @@
 		}
 	else
 		{
-			echo "<script>alert('请保存');location.href='system_cs.php'</script>";
+			if(isset($_POST["submit"]) && $_POST["submit"] == "确认")
+			{
+				$zt = $_POST["zt"];
+				$tcr = $_POST["tcr"];
+				$djrq = $_POST["djrq"];
+				$wtms = $_POST["wtms"];
+				$cljg_a = $_POST["gx"];
+				$cljg = str_replace("\r\n","<br>","$cljg_a");
+				$clr = $_POST["clr"];
+				$wcrq = $_POST["wcrq"];
+				$bz = $_POST["bz"];
+				$bjr = $_SESSION['username'];
+				$wt_lx = $_POST["wt_lx"];
+				$wt_id = $_POST["wt_id"];
+				$wt_zt = $_POST["zt"];
+				$assign_name = $_SESSION["username"];
+				$assigned_name = $_POST["assigned_name"];
+				
+				mysql_connect("localhost","root","sa");
+				mysql_select_db("my_db");
+				mysql_query("set names 'utf8'");
+				//此语句更新system_cs表，显示该问题当前最新状态
+				$sql = "update system_cs set zt='$zt',tcr='$tcr',djrq='$djrq',wtms='$wtms',cljg='$cljg',clr='$clr',wcrq='$wcrq',bz='$bz' where tcr='$tcr' and wtms='$wtms'";
+				//此语句，记录该问题所有的处理过程记录
+				$sql_gx = "insert into system_cs_clgc (wtms,clgc,bjr) values ('$wtms','$cljg','$bjr')";
+				
+				
+				//此语句，把指派对象及相关信息，存入指派表内，
+				$sql_assign = "insert into system_assign_user (wt_lx,wt_id,wt_zt,assign_name,assigned_name,cljg) value ('$wt_lx','$wt_id','$wt_zt','$assign_name','$assigned_name','$cljg')";
+				//此语句，记录第一次的指派及之后的处理过程，过程只记录从“处理中”变成“已完成”的那次，这个判断在上面的语句中进行。
+				$sql_record = "insert into system_assign_record (wt_lx,wt_id,wt_zt,assign_name,assigned_name,cljg) value ('$wt_lx','$wt_id','$wt_zt','$assign_name','$assigned_name','$cljg')";
+				if($assigned_name == "默认")
+				{
+					echo "<script>alert('指派失败，请选择指派对象');location.href='system_cs.php'</script>";
+				} 
+				else
+				{
+					$result = mysql_query($sql);
+					$result_gx = mysql_query($sql_gx);
+					$result_a = mysql_query($sql_assign);
+					$result_record = mysql_query($sql_record);
+					echo "<script>alert('指派成功，点击刷新');location.href='system_cs.php'</script>";
+				}
+			}
+			else
+			{
+				$zt = $_POST["zt"];
+				$tcr = $_POST["tcr"];
+				$djrq = $_POST["djrq"];
+				$wtms = $_POST["wtms"];
+				$cljg_a = $_POST["gx"];
+				$cljg = str_replace("\r\n","<br>","$cljg_a");
+				$clr = $_POST["clr"];
+				$wcrq = $_POST["wcrq"];
+				$bz = $_POST["bz"];
+				$bjr = $_SESSION['username'];
+				$wt_lx = $_POST["wt_lx"];
+				$wt_id = $_POST["wt_id"];
+				$wt_zt = $_POST["zt"];
+				$assign_name = $_SESSION["username"];
+				$assigned_name = $_POST["assigned_name"];
+				
+				mysql_connect("localhost","root","sa");
+				mysql_select_db("my_db");
+				mysql_query("set names 'utf8'");
+				
+				$sql_gb_a = "update system_cs set zt = '已完成' where wt_id = '$wt_id'";
+				$sql_gb = "insert into system_cs_clgc (wtms,clgc,bjr) values ('$wtms','关闭此问题','$bjr')";
+				$sql_gb_assign = "update system_assign_user set wt_zt = '已完成' where wt_id = '$wt_id'";
+				$sql_gb_assigned = "insert into system_assign_record (wt_lx,wt_id,wt_zt,assign_name,assigned_name,cljg) value ('$wt_lx','$wt_id','已完成','$assign_name','$assigned_name','关闭此问题')";
+				
+				$result_gb_a = mysql_query($sql_gb_a);
+				$result_gb = mysql_query($sql_gb);
+				$result_gb_assign = mysql_query($sql_gb_assign);
+				$result_gb_assigned = mysql_query($sql_gb_assigned);
+				
+				echo "<script>alert('问题已关闭');location.href='system_cs.php'</script>";
+			}
 		}
 ?>
 
