@@ -210,8 +210,74 @@
     <div region="center" id="mainPanle" style="background: #eee;overflow:hidden;">
         <div id="tabs" class="easyui-tabs" fit="true" border="false">
             <div title="主页" style="padding: 20px;">
-            <div class="easyui-panel" title="通知公告" collapsible="true" style="width:100%;height:30%;padding:10px;">
-				
+            <div class="easyui-panel" title="通知" collapsible="true" style="width:100%;height:30%;padding:10px;">
+				<table>
+					<tr>
+						<td>
+							<?php
+								error_reporting (E_ALL & ~E_DEPRECATED);
+								$username = $_SESSION["username"];
+								mysql_connect("localhost","root","sa");
+								mysql_select_db("my_db");
+								mysql_query("set names 'utf8'");
+								$sql = "select * from system_assign_user where assigned_name = '$username'";
+								$result = mysql_query($sql);
+								while($row = mysql_fetch_array($result))
+								{
+									if($row["wt_zt"] == "处理中")
+									{
+										echo "<span style='color:#FF0000'>".$row["assign_name"]."</span>";
+										echo "<span style='color:#FF0000'>在</span>";
+										echo "<span style='color:#FF0000'>".$row["assign_time"]."</span>";
+										echo "<span style='color:#FF0000'>分配你跟踪处理</span>";
+                                        echo " ";
+										echo "<span style='color:#FF0000'><b>".$row["wt_lx"]."</b></span>";
+                                        echo " ";
+										echo "<span style='color:#FF0000'>ID为</span>";
+                                        echo " ";
+										echo "<span style='color:#FF0000'><b>".$row["wt_id"]."</b></span>";
+                                        echo " ";
+										echo "<span style='color:#FF0000'>的问题，请及时处理。</span>";
+										echo "<br>";
+									}
+								}
+							?>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<?php
+								error_reporting (E_ALL & ~E_DEPRECATED);
+								$username = $_SESSION["username"];
+								mysql_connect("localhost","root","sa");
+								mysql_select_db("my_db");
+								mysql_query("set names 'utf8'");
+								$sql = "select * from system_assign_user where assign_name = '$username'";
+								$result = mysql_query($sql);
+								while($row = mysql_fetch_array($result))
+								{
+									if($row["wt_zt"] == "处理中")
+									{
+										echo "<span style='color:#0000FF'>你在</span>";
+										echo "<span style='color:#0000FF'>".$row["assign_time"]."</span>";
+										echo "<span style='color:#0000FF'>分配</span>";
+										echo "<span style='color:#0000FF'>".$row["assigned_name"]."</span>";
+										echo "<span style='color:#0000FF'>跟踪处理</span>";
+                                        echo " ";
+										echo "<span style='color:#0000FF'><b>".$row["wt_lx"]."</b></span>";
+                                        echo " ";
+										echo "<span style='color:#0000FF'>ID为</span>";
+                                        echo " ";
+										echo "<span style='color:#0000FF'><b>".$row["wt_id"]."</b></span>";
+                                        echo " ";
+										echo "<span style='color:#0000FF'>的问题，其正在处理中。</span>";
+										echo "<br>";
+									}
+								}
+							?>
+						</td>
+					</tr>
+				</table>
 			</div>
             <p></p>
             <div class="easyui-panel" title="最新更新" collapsible="true" style="width:100%;height:65%;padding:10px;">
