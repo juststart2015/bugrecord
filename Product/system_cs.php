@@ -67,7 +67,10 @@
             
             <!--以下函数为内容增加框-->
             <div class="easyui-window" id="win_add" title="增加" style="width:95%;height:95%;" closed="true">
-            	<form id="zj" style="padding:10px 20px 10px 40px;" action="system_cs_insert.php" method="post">
+            	<form id="zj" style="padding:10px 20px 10px 40px;" action="insert.php" method="post">
+					<div style="display:none">
+						<input name="system_insert_name" value="system_cs" />
+					</div>
                 	<p>
                     	是否完成：<select name="zt" style="width:70px">
                         <option value="处理中">处理中</option>
@@ -120,7 +123,7 @@
 					</form>
 				</div>
 				
-            	<form style="padding:10px 20px 10px 40px;" action="system_cs_edit.php" method="post" id="fm" name="form_edit">
+            	<form style="padding:10px 20px 10px 40px;" action="edit.php" method="post" id="fm" name="form_edit">
 				
 					<!--以下div块用于获取当前用户的权限，以供函数getSelect()调用-->
 					<div style="display:none">
@@ -129,6 +132,10 @@
 					
 					<div style="display:none">
 						<input type="text" id="wt_lx" name="wt_lx" value="超市" />
+					</div>
+					
+					<div style="display:none">
+						<input name="system_edit_name" value="system_cs" />
 					</div>
 					
 					<div id="bj" style="display:block">
@@ -218,7 +225,7 @@
 						  <tr>
 						  	<th>
 								<div id="assign" style="display:none">
-								指派
+								分配
 								<select name="assigned_name">
 									<option value="默认">请选择</option>
 									<option value="郭超">郭超</option>
