@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>无标题文档</title>
+<style>
+	table
+	  {
+	  border-collapse:collapse;
+	  }
+	
+	table, td, th
+	  {
+	  border:1px solid black;
+	  }
+</style>
+</head>
+
+<body>
+	<h1>一、imagecreatetruecolor 新建一个真彩色图像</h1>
+	<p>
+		<h3>说明</h3>
+		<hr />
+		<code>resource imagecreatetruecolor ( int $width , int $height )</code>
+		<br />
+		imagecreatetruecolor() 返回一个图像标识符，代表了一幅大小为 x_size 和 y_size 的黑色图像。
+		<br />
+		是否定义了本函数取决于 PHP 和 GD 的版本。
+		<br />
+		从 PHP 4.0.6 到 4.1.x 只要加载了 GD 模块本函数一直存在，但是在没有安装 GD2 的时候调用，PHP 将发出致命错误并退出。在 PHP 4.2.x 中此行为改为发出警告而不是错误。其它版本只在安装了正确的 GD 版本时定义了本函数。
+	</p>
+	<p>参考：<a href="http://php.net/manual/zh/function.imagecreatetruecolor.php">PHP手册--imagecreatetruecolor</a></p>
+	<p>
+		<h3>范例</h3>
+		<hr />
+		<code><pre>
+	header ('Content-Type: image/png');
+	$im = @imagecreatetruecolor(120, 20)
+		  or die('Cannot Initialize new GD image stream');
+	$text_color = imagecolorallocate($im, 233, 14, 91);
+	imagestring($im, 1, 5, 5,  'A Simple Text String', $text_color);
+	imagepng($im);
+	imagedestroy($im);
+		</pre></code>
+		以上例程的输出类似于：<img src="img/gd2.png" />
+	</p>
+	<h1>二、当以上代码输出无效，只显示一个图片裂开的图标时</h1>
+	<p>
+		在绘图前清一下缓存(也就是在写header之前)，先写ob_clean(); 然后就可以显示了
+	</p>
+	<p>
+		<h3>ob_clean — 清空（擦掉）输出缓冲区</h3>
+		<hr />
+		<code>void ob_clean ( void )</code>
+		<br />
+		此函数用来丢弃输出缓冲区中的内容。
+		<br />
+		此函数不会销毁输出缓冲区，而像 ob_end_clean() 函数会销毁输出缓冲区。
+	</p>
+	<p>
+		参考：<a href="http://php.net/manual/zh/function.ob-clean.php">PHP手册--ob_clean()</a>
+	</p>
+
+</body>
+</html>
