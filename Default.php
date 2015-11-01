@@ -75,6 +75,8 @@
 		a:visited {color:blue; text-decoration:none}
 		a:hover   {color:blue; text-decoration:none}
 		a:active  {color:blue; text-decoration:none}
+		
+		.table_2,.table_2 td,.table_2 th{border:1px solid #000000;border-collapse:collapse;}
     </style>
 </head>
 
@@ -191,6 +193,11 @@
                             	<a href="#" onclick="addTab('通讯录','Product/txl.php')">通讯录</a>
                             </div>
                         </li>
+						<li id="update_li">
+							<div>
+								<a href="#" onclick="addTab('最新更新','Product/update_list.php')">最新更新</a>
+							</div>
+						</li>
 						<li id="userset_li">
 							<div>
 								<a href="#" onclick="addTab('用户管理','Product/userset.php')">用户管理</a>
@@ -281,7 +288,37 @@
 			</div>
             <p></p>
             <div class="easyui-panel" title="最新更新" collapsible="true" style="width:100%;height:65%;padding:10px;">
-				
+				<?php
+				error_reporting (E_ALL & ~E_DEPRECATED & ~E_NOTICE);
+				mysql_connect("localhost","root","sa");
+				mysql_select_db("my_db");
+				mysql_query("set names 'utf8'");
+				$sql = 'select * from update_list order by id desc limit 15';
+				$result = mysql_query($sql);
+				while($row=mysql_fetch_array($result)){
+					$rows[] = $row;	
+				}
+				?>
+				<table class="table_2" width="100%" bgcolor="#D2E0F2">
+					<thead>
+						<tr>
+							<th width="5%" align="center">ID</th>
+							<th width="10%" align="center">更新时间</th>
+							<th width="10%" align="center">更新人</th>
+							<th width="75%">更新概述</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach($rows as $row): ?>
+						<tr>
+							<td align="center"><?php echo $row['id']; ?></td>
+							<td align="center"><?php echo $row['update_time']; ?></td>
+							<td align="center"><?php echo $row['gxr']; ?></td>
+							<td><a href="#" onclick="addTab('最新更新','Product/update_content.php?act=<?php echo $row['id']; ?>')"><?php echo $row['gxgs']; ?></a></td>
+						</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
 			</div>
             </div>
         </div>
